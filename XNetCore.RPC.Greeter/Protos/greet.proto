@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+option csharp_namespace = "XNetCore.RPC.Greeter";
+
+package greet;
+
+
+// 服务端定义
+service RpcServiceGreeter {
+	// 服务端返馈信息方法
+	rpc RpcService (RpcRequest) returns (RpcResponse) {}
+	rpc RpcStream (RpcRequest) returns (stream RpcResponse) {}
+}
+
+// 请求信息
+message RpcRequest {
+    string Data = 1;
+}
+
+// 服务端响应信息
+message RpcResponse {
+	string Data  = 1;
+}

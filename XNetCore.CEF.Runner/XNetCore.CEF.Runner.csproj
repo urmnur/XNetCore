@@ -1,0 +1,46 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <Platforms>AnyCPU;x64</Platforms>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CefSharp.WinForms" Version="86.0.241" />
+    <PackageReference Include="SharpZipLib" Version="1.3.1" />
+    <!-- TODO: These updates are WinForms required because CefSharp.Wpf specifies
+         <Private>false</Private>, which means these libraries will not be specified in
+         the .deps.json file, and so the CoreCLR wouldn't load these. -->
+    <Reference Update="CefSharp">
+      <Private>true</Private>
+    </Reference>
+    <Reference Update="CefSharp.Core">
+      <Private>true</Private>
+    </Reference>
+    <Reference Update="CefSharp.WinForms">
+      <Private>true</Private>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="XNetCore.RPC.Server">
+      <HintPath>..\00.XNetCore.BIN\XNetCore.RPC.Server.dll</HintPath>
+    </Reference>
+    <Reference Include="XNetCore.STL">
+      <HintPath>..\00.XNetCore.BIN\XNetCore.STL.dll</HintPath>
+    </Reference>
+    <Reference Include="XNetCore.XAPI">
+      <HintPath>..\..\00.XNetCore.BIN\XNetCore.XAPI.dll</HintPath>
+    </Reference>
+    <Reference Include="XNetCore.XRun">
+      <HintPath>..\..\00.XNetCore.BIN\XNetCore.XRun.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="xcopy /s /y &quot;$(TargetPath)&quot; &quot;$(SolutionDir)00.XNetCore.BIN\*.*&quot;&#xD;&#xA;xcopy /s /y &quot;$(TargetPath)&quot; &quot;$(SolutionDir)..\00.XNetCore.BIN\*.*&quot;" />
+  </Target>
+
+</Project>

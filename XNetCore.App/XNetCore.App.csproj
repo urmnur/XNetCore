@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ApplicationIcon>favicon.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\XNetCore.Runner\XNetCore.Runner.csproj" />
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="xcopy /s /y &quot;$(TargetPath)&quot; &quot;$(SolutionDir)00.XNetCore.BIN\*.*&quot;&#xD;&#xA;xcopy /s /y &quot;$(TargetPath)&quot; &quot;$(SolutionDir)..\00.XNetCore.BIN\*.*&quot;" />
+  </Target>
+
+</Project>

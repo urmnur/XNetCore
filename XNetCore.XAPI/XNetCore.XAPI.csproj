@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <OutputType>Library</OutputType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\XNetCore.STL\XNetCore.STL.csproj" />
+    <ProjectReference Include="..\XNetCore.XRun\XNetCore.XRun.csproj" />
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="xcopy /s /y &quot;$(TargetPath)&quot; &quot;$(SolutionDir)00.XNetCore.BIN\*.*&quot;&#xD;&#xA;xcopy /s /y &quot;$(TargetPath)&quot; &quot;$(SolutionDir)..\00.XNetCore.BIN\*.*&quot;" />
+  </Target>
+
+</Project>

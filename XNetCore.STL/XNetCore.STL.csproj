@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+
+  <ItemGroup>
+    <PackageReference Include="Castle.Core" Version="4.4.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="xcopy /s /y &quot;$(TargetPath)&quot; &quot;$(SolutionDir)00.XNetCore.BIN\*.*&quot;&#xD;&#xA;xcopy /s /y &quot;$(TargetPath)&quot; &quot;$(SolutionDir)..\00.XNetCore.BIN\*.*&quot;" />
+  </Target>
+
+</Project>

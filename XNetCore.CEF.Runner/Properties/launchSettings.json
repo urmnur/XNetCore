@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "XNetCore.CEF.Runner": {
+      "commandName": "Executable",
+      "executablePath": "E:\\00.天马行空\\50.XNetCore\\00.XNetCore.App\\XNetCore.App.exe"
+    }
+  }
+}

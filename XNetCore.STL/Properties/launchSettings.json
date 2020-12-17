@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "XNetCore.STL": {
+      "commandName": "Executable",
+      "executablePath": "D:\\TechStar.Runner\\A230-TechStar.OPCA\\XNetCore.App.exe"
+    }
+  }
+}

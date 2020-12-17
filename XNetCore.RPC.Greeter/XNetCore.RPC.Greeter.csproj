@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Google.Protobuf" Version="3.14.0" />
+    <PackageReference Include="Grpc" Version="2.34.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Protos\greet.proto">
+      <GrpcServices>Client</GrpcServices>
+    </None>
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="xcopy /s /y &quot;$(TargetPath)&quot; &quot;$(SolutionDir)00.XNetCore.BIN\*.*&quot;&#xD;&#xA;xcopy /s /y &quot;$(TargetPath)&quot; &quot;$(SolutionDir)..\00.XNetCore.BIN\*.*&quot;" />
+  </Target>
+</Project>

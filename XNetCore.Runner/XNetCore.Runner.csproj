@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+  </PropertyGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="xcopy /s /y &quot;$(TargetPath)&quot; &quot;$(SolutionDir)00.XNetCore.BIN\*.*&quot;&#xD;&#xA;xcopy /s /y &quot;$(TargetPath)&quot; &quot;$(SolutionDir)..\00.XNetCore.BIN\*.*&quot;" />
+  </Target>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.DependencyModel" Version="5.0.0" />
+  </ItemGroup>
+
+</Project>
