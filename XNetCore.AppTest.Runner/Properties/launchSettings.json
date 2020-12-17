@@ -1,8 +1,0 @@
-{
-  "profiles": {
-    "XNetCore.AppTest.Runner": {
-      "commandName": "Executable",
-      "executablePath": "E:\\00.天马行空\\50.XNetCore\\XNetCore\\XNetCore.AppTest.Runner\\bin\\Debug\\net5.0-windows\\XNetCore.App.exe"
-    }
-  }
-}
