@@ -8,22 +8,29 @@ namespace XNetCore.STL
 {
     public class XResponse
     {
-        public XResponse(object rsf)
+        private void iniXResponse()
         {
             this.RequestId = XContext.Current.RequestId;
             this.Code = 200;
             this.TraceId = XContext.Current.TraceId;
             this.RpcId = XContext.Current.RpcId;
             this.LogId = XContext.Current.LogId;
+        }
+        public XResponse()
+        {
+            iniXResponse();
+        }
+        public XResponse(object rsf)
+        {
+            iniXResponse();
             this.Data = rsf;
         }
+
+
         public XResponse(Exception ex)
         {
-            this.RequestId = XContext.Current.RequestId;
+            iniXResponse();
             this.Code = 99999;
-            this.TraceId = XContext.Current.TraceId;
-            this.RpcId = XContext.Current.RpcId;
-            this.LogId = XContext.Current.LogId;
             if (ex != null)
             {
                 this.Error = ex.ToString();

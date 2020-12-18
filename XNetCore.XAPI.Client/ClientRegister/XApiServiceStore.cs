@@ -4,17 +4,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using XNetCore.RPC.Core;
+using XNetCore.XAPI.Client;
 using XNetCore.STL;
 
-namespace XNetCore.RPC.Client
+namespace XNetCore.XAPI.Client
 {
-    class RpcServiceStore
+    class XApiServiceStore
     {
         #region 单例模式
         private static object lockobject = new object();
-        private static RpcServiceStore _instance = null;
-        public static RpcServiceStore Instance
+        private static XApiServiceStore _instance = null;
+        public static XApiServiceStore Instance
         {
             get
             {
@@ -24,7 +24,7 @@ namespace XNetCore.RPC.Client
                     {
                         if (_instance == null)
                         {
-                            _instance = new RpcServiceStore();
+                            _instance = new XApiServiceStore();
                         }
                     }
 
@@ -32,7 +32,7 @@ namespace XNetCore.RPC.Client
                 return _instance;
             }
         }
-        private RpcServiceStore()
+        private XApiServiceStore()
         {
             Clear();
         }
@@ -57,7 +57,7 @@ namespace XNetCore.RPC.Client
             servicestore.TryAdd(Guid.NewGuid().ToString(), value);
         }
 
-        private bool RpcImplEnable(RegistData data)
+        private bool XApiImplEnable(RegistData data)
         {
             if (data == null)
             {
@@ -87,7 +87,7 @@ namespace XNetCore.RPC.Client
             var result = getServiceByIntfc(serviceIntfc, methodName);
             if (result == null)
             {
-                result = getCurrentAppRpcServiceByIntfc(serviceIntfc, methodName);
+                result = getCurrentAppServiceByIntfc(serviceIntfc, methodName);
             }
             return result;
         }
@@ -123,7 +123,7 @@ namespace XNetCore.RPC.Client
             return getRandomInstance(result1.ToArray());
         }
 
-        private ClientRegistData getCurrentAppRpcServiceByIntfc(string serviceIntfc, string methodName)
+        private ClientRegistData getCurrentAppServiceByIntfc(string serviceIntfc, string methodName)
         {
             var data = CurrentApp.Instance.CreateRegistData(serviceIntfc, methodName);
             if (data == null)
@@ -133,8 +133,6 @@ namespace XNetCore.RPC.Client
             RegisterService(data);
             return getServiceByIntfc(serviceIntfc, methodName);
         }
-
-
 
         public ClientRegistData GetServiceByName(string serviceName)
         {

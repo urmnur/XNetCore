@@ -79,15 +79,7 @@ namespace XNetCore.XRun
             {
                 throw new XNetCore.STL.XExceptionNoFindImpl("Invoke Method is null");
             }
-            var idx = method.IndexOf("|");
-            if (idx < 0)
-            {
-                idx = method.IndexOf(",");
-            }
-            if (idx < 0)
-            {
-                idx = method.IndexOf(".");
-            }
+            var idx = method.IndexOf(".");
             if (idx < 0)
             {
                 return ("", method);

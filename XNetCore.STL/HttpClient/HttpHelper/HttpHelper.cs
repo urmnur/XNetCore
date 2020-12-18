@@ -11,7 +11,7 @@ namespace XNetCore.STL
     /// <summary>
     /// HttpClient操作
     /// </summary>
-    class HttpHelper
+    public class HttpHelper
     {
         #region 单例模式
         private static object lockobject = new object();
@@ -92,7 +92,7 @@ namespace XNetCore.STL
                         {
                             forms.Add(body as HForm);
                         }
-                        foreach(var form in forms)
+                        foreach (var form in forms)
                         {
                             if (string.IsNullOrWhiteSpace(form.Key))
                             {
@@ -107,10 +107,10 @@ namespace XNetCore.STL
                     }
                     else
                     {
-                        if (body !=null  && body is Dictionary<string,object>)
+                        if (body != null && body is Dictionary<string, object>)
                         {
                             var dic = body as Dictionary<string, object>;
-                            if (dic !=null && dic.Values.Count==1)
+                            if (dic != null && dic.Values.Count == 1)
                             {
                                 body = dic.Values.FirstOrDefault();
                             }
@@ -161,7 +161,7 @@ namespace XNetCore.STL
         /// <param name="header"></param>
         /// <param name="timeout"></param>
         /// <returns></returns>
-        public HResponse Get(string url, Dictionary<string, string> header , int timeout )
+        public HResponse Get(string url, Dictionary<string, string> header, int timeout)
         {
             return this.http(url, "GET", header, null, timeout);
         }

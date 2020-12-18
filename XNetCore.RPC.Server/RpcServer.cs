@@ -24,7 +24,7 @@ namespace XNetCore.RPC.Server
             {
                 return;
             }
-            CurrentAppRpcRegistData.Instance.Port = port;
+            CurrentApp.Instance.Port = port;
             this.server = new Grpc.Core.Server(
                 new List<ChannelOption>{
                     new ChannelOption(ChannelOptions.MaxReceiveMessageLength, int.MaxValue),

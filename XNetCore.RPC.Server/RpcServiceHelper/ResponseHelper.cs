@@ -8,7 +8,7 @@ using XNetCore.STL;
 
 namespace XNetCore.RPC.Server
 {
-    public class ResponseHelper
+    class ResponseHelper
     {
         #region 单例模式
         private static object lockobject = new object();

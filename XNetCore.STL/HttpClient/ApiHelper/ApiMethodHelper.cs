@@ -63,7 +63,7 @@ namespace XNetCore.STL
             {
                 return null;
             }
-            var api = data.ToObject<ApiResponse>();
+            var api = data.ToObject<XResponse>();
             if (api.Data == null)
             {
                 return null;

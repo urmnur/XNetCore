@@ -8,14 +8,14 @@ using System.Text;
 using System.Threading.Tasks;
 using XNetCore.STL;
 
-namespace XNetCore.RPC.Core
+namespace XNetCore.XAPI.Client
 {
-    public class CurrentAppRpcRegistData
+    class CurrentApp
     {
         #region 单例模式
         private static object lockobject = new object();
-        private static CurrentAppRpcRegistData _instance = null;
-        public static CurrentAppRpcRegistData Instance
+        private static CurrentApp _instance = null;
+        public static CurrentApp Instance
         {
             get
             {
@@ -25,7 +25,7 @@ namespace XNetCore.RPC.Core
                     {
                         if (_instance == null)
                         {
-                            _instance = new CurrentAppRpcRegistData();
+                            _instance = new CurrentApp();
                         }
                     }
 
@@ -33,7 +33,7 @@ namespace XNetCore.RPC.Core
                 return _instance;
             }
         }
-        private CurrentAppRpcRegistData()
+        private CurrentApp()
         {
         }
         #endregion

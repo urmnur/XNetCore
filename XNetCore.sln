@@ -27,6 +27,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XNetCore.XAPI", "XNetCore.X
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XNetCore.XRun", "XNetCore.XRun\XNetCore.XRun.csproj", "{D4978270-8425-4C66-889B-A61FAD4FAB3D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XNetCore.XAPI.Client", "XNetCore.XAPI.Client\XNetCore.XAPI.Client.csproj", "{6F54850A-9877-4981-989F-8A77CE4CA86E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XNetCore.XTest", "XNetCore.XTest\XNetCore.XTest.csproj", "{DF093A42-CCA5-4BF2-996C-0E88D4E4E89F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -131,6 +135,22 @@ Global
 		{D4978270-8425-4C66-889B-A61FAD4FAB3D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D4978270-8425-4C66-889B-A61FAD4FAB3D}.Release|x64.ActiveCfg = Release|Any CPU
 		{D4978270-8425-4C66-889B-A61FAD4FAB3D}.Release|x64.Build.0 = Release|Any CPU
+		{6F54850A-9877-4981-989F-8A77CE4CA86E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F54850A-9877-4981-989F-8A77CE4CA86E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F54850A-9877-4981-989F-8A77CE4CA86E}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{6F54850A-9877-4981-989F-8A77CE4CA86E}.Debug|x64.Build.0 = Debug|Any CPU
+		{6F54850A-9877-4981-989F-8A77CE4CA86E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F54850A-9877-4981-989F-8A77CE4CA86E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F54850A-9877-4981-989F-8A77CE4CA86E}.Release|x64.ActiveCfg = Release|Any CPU
+		{6F54850A-9877-4981-989F-8A77CE4CA86E}.Release|x64.Build.0 = Release|Any CPU
+		{DF093A42-CCA5-4BF2-996C-0E88D4E4E89F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF093A42-CCA5-4BF2-996C-0E88D4E4E89F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF093A42-CCA5-4BF2-996C-0E88D4E4E89F}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{DF093A42-CCA5-4BF2-996C-0E88D4E4E89F}.Debug|x64.Build.0 = Debug|Any CPU
+		{DF093A42-CCA5-4BF2-996C-0E88D4E4E89F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF093A42-CCA5-4BF2-996C-0E88D4E4E89F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF093A42-CCA5-4BF2-996C-0E88D4E4E89F}.Release|x64.ActiveCfg = Release|Any CPU
+		{DF093A42-CCA5-4BF2-996C-0E88D4E4E89F}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

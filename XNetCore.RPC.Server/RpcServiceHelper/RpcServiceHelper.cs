@@ -12,7 +12,7 @@ namespace XNetCore.RPC.Server
     /// <summary>
     /// 服务执行
     /// </summary>
-    public class RpcServiceHelper
+    class RpcServiceHelper
     {
         #region 单例模式
         private static object lockobject = new object();

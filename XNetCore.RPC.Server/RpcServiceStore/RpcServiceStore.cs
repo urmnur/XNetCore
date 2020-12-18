@@ -9,7 +9,7 @@ using XNetCore.STL;
 
 namespace XNetCore.RPC.Server
 {
-    public class RpcServiceStore
+    class RpcServiceStore
     {
         #region 单例模式
         private static object lockobject = new object();
@@ -66,7 +66,7 @@ namespace XNetCore.RPC.Server
 
         private ServiceRegistData getCurrentAppRpcServiceByIntfc(RequestServiceData data)
         {
-            registerService(CurrentAppRpcRegistData.Instance.CreateRegistData(data.ServiceInfc, data.ServiceMethod));
+            registerService(CurrentApp.Instance.CreateRegistData(data.ServiceInfc, data.ServiceMethod));
             return getServiceRegistData(data);
         }
 
