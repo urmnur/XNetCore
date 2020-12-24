@@ -58,26 +58,6 @@ namespace XNetCore.STL
 
             }
         }
-        private void xLogMsg(XMessage msg)
-        {
-            if (msg == null)
-            {
-                return;
-            }
-            if (msg.StackFrameIndex > 0)
-            {
-                msg.MsgMethod = getMsgMethodName(msg.StackFrameIndex + 1);
-            }
-            else
-            {
-                msg.MsgMethod = getMsgMethodName(1);
-            }
-
-            if (string.IsNullOrWhiteSpace(msg.MsgTopic))
-            {
-                msg.MsgTopic = msg.MsgMethod;
-            }
-        }
         private void mPublishMsg(XMessage msg)
         {
             if (msg == null)
@@ -97,6 +77,11 @@ namespace XNetCore.STL
             {
                 msg.MsgTopic = msg.MsgMethod;
             }
+            callbackInvokeMsg(msg);
+        }
+
+        private void callbackInvokeMsg(XMessage msg)
+        { 
             foreach (var subscriber in this.topiccallbacks.Values)
             {
                 try

@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using XNetCore.STL;
 
 namespace XNetCore.EF
@@ -10,6 +9,9 @@ namespace XNetCore.EF
         public XDbContext(DbConfig config) : base()
         {
             this.config = config;
+        }
+        public XDbContext() : this(XApp.Current.DbConfig.ToObject<DbConfig>())
+        {
         }
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {

@@ -45,7 +45,7 @@ namespace XNetCore.Runner
             Application.SetCompatibleTextRenderingDefault(false);
             this.AppIcon = getfavicon();
             sendMsg("RunHelper");
-            new PrivatePath().SetPrivatePaths();
+            new PrivatePath().AppendPrivatePaths();
             sendMsg($"AppPath：{Process.GetCurrentProcess().MainModule.FileName}");
             sendMsg("Initialize Runner");
         }

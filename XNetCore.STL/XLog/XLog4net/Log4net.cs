@@ -24,7 +24,7 @@ namespace XNetCore.STL
         }
         private FileInfo getFilePath(string fileName)
         {
-            var dir = LocalPath.CurrentPath.Directory;
+            var dir = LocalPath.CurrentFile.Directory;
             var result = getChildFilePath(dir, fileName);
             if (result == null)
             {

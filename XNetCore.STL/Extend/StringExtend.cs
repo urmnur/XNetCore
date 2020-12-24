@@ -11,6 +11,10 @@ namespace XNetCore.STL
     /// </summary>
     public static class StringExtend
     {
+        public static bool IsNullOrWhiteSpace(this string value)
+           => string.IsNullOrWhiteSpace(value);
+
+
         /// <summary>
         /// 转化为Int
         /// </summary>

@@ -6,7 +6,15 @@ namespace XNetCore.CEF.Runner
 {
     class PackScheme
     {
+        private static object lockobject = new object();
         public IResourceHandler Create(IBrowser browser, IFrame frame, string schemeName, IRequest request)
+        {
+            lock (lockobject)
+            {
+                return mCreate(browser, frame, schemeName, request);
+            }
+        }
+        private IResourceHandler mCreate(IBrowser browser, IFrame frame, string schemeName, IRequest request)
         {
             var uri = new Uri(request.Url);
             var filePath = uri.AbsolutePath;

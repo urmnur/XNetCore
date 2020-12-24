@@ -5,9 +5,9 @@ using XNetCore.XAPI.Client;
 
 namespace XNetCore.XTest
 {
-    class TXApiClient
+    class TestXApiClient
     {
-        public void MyTest()
+        public void Test()
         {
             XApiClient.GetResponse<object>("127.0.0.1", 1024, "XNetCore.CEF.Runner.CefApp,XNetCore.CEF.Runner", "showdevtools", null);
         }

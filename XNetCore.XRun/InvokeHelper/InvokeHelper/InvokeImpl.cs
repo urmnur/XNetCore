@@ -43,11 +43,11 @@ namespace XNetCore.XRun
             {
                 throw new XNetCore.STL.XExceptionNoFindImpl("Invoke Impl is null");
             }
-            if (impl.GetType().IsSubclassOf(typeof(Type)))
+            if (typeof(Type).IsAssignableFrom(impl.GetType()))
             {
                 return impl as Type;
             }
-            if (impl.GetType().IsSubclassOf(typeof(string)))
+            if (typeof(string).IsAssignableFrom(impl.GetType()))
             {
                 return impl.ToString().ToType();
             }
@@ -172,7 +172,7 @@ namespace XNetCore.XRun
         private MethodInfo getMethod(object impl, string methodName)
         {
             var type = impl.GetType();
-            if (impl.GetType().IsSubclassOf(typeof(Type)))
+            if (typeof(Type).IsAssignableFrom(impl.GetType()))
             {
                 type = impl as Type;
             }

@@ -22,13 +22,13 @@ namespace XNetCore.Runner
         /// 设置应用程序文件夹
         /// </summary>
         /// <returns></returns>
-        public void SetPrivatePaths()
+        public void AppendPrivatePaths()
         {
             var paths = PrivatePathHelper.Instance.PrivatePaths;
             foreach (var dir in paths)
             {
                 writeMsg(dir.FullName);
-                setPrivatePath(dir);
+                appendPrivatePathsByDependencyContext(dir);
             }
         }
 
@@ -36,7 +36,7 @@ namespace XNetCore.Runner
         /// 设置应用程序文件夹
         /// </summary>
         /// <param name="dir"></param>
-        private void setPrivatePath(DirectoryInfo dir)
+        private void appendPrivatePathsByDependencyContext(DirectoryInfo dir)
         {
             try
             {
@@ -66,7 +66,7 @@ namespace XNetCore.Runner
         /// 设置应用程序文件夹
         /// </summary>
         /// <param name="dir"></param>
-        private void setPrivatePath0(DirectoryInfo dir)
+        private void appendPrivatePathsByAppDomain(DirectoryInfo dir)
         {
 
             AppDomain.CurrentDomain.AppendPrivatePath(dir.FullName);
@@ -76,7 +76,7 @@ namespace XNetCore.Runner
         /// 暂不使用
         /// </summary>
         /// <param name="path"></param>
-        private void setPrivatePath1(DirectoryInfo dir)
+        private void appendPrivatePathsByFusionContext(DirectoryInfo dir)
         {
             var path = dir.FullName;
             AppDomain.CurrentDomain.SetData("PRIVATE_BINPATH", path);

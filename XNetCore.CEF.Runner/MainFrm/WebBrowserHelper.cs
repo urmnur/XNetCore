@@ -113,7 +113,7 @@ namespace XNetCore.CEF.Runner
 
         private FileInfo getBrowserSubprocess()
         {
-            foreach (var dir in RunnerHelper.Instance.PrivatePaths)
+            foreach (var dir in XNetCore.STL.Runner.Instance.PrivatePaths)
             {
                 var fi = new FileInfo(Path.Combine(dir.FullName, "CefSharp.BrowserSubprocess.exe"));
                 if (fi.Exists)

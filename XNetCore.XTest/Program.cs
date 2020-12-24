@@ -6,21 +6,22 @@ namespace XNetCore.XTest
     {
         static void Main(string[] args)
         {
+            XNetCore.STL.Runner.Instance.AppendPrivatePaths();
             Console.WriteLine("Hello XNetCore XTest!");
             try
             {
                 xtest();
-                Console.WriteLine("XTest Finish");
+                Console.WriteLine("XNetCore XTest Finish");
             }
             catch(Exception ex)
             {
-                Console.WriteLine("XTest Error\r\n" + ex.ToString());
+                Console.WriteLine("XNetCore XTest Error\r\n" + ex.ToString());
             }
             Console.ReadLine();
         }
         static void xtest()
         {
-            new TXApiClient().MyTest();
+            new TestXApiClient().Test();
         }
     }
 }

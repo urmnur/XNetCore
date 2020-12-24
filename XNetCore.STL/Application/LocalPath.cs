@@ -17,7 +17,7 @@ namespace XNetCore.STL
         /// <summary>
         /// 当前dll所在路径
         /// </summary>
-        public static FileInfo CurrentPath
+        public static FileInfo CurrentFile
         {
             get
             {

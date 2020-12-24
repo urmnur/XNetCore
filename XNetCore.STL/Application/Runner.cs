@@ -11,12 +11,12 @@ namespace XNetCore.STL
     /// <summary>
     /// 程序应用程序文件夹
     /// </summary>
-    public  class RunnerHelper
+    public class Runner
     {
         #region 单例模式
         private static readonly object lockobject = new object();
-        private static RunnerHelper _instance = null;
-        public static RunnerHelper Instance
+        private static Runner _instance = null;
+        public static Runner Instance
         {
             get
             {
@@ -26,19 +26,44 @@ namespace XNetCore.STL
                     {
                         if (_instance == null)
                         {
-                            _instance = new RunnerHelper();
+                            _instance = new Runner();
                         }
                     }
                 }
                 return _instance;
             }
         }
-        private RunnerHelper()
+        private Runner()
         {
             this.PrivatePaths = getProperty<DirectoryInfo[]>("PrivatePaths");
+
+            if (this.PrivatePaths == null)
+            {
+                this.PrivatePaths = new DirectoryInfo[0];
+            }
             this.PrivateFiles = getPrivateFiles(this.PrivatePaths);
         }
         #endregion
+
+        public void AppendPrivatePaths()
+        {
+            var type = "XNetCore.Runner.PrivatePath,XNetCore.Runner".ToType();
+            if(type==null)
+            {
+                return;
+            }
+            var instance = type.Instance();
+            if (instance == null)
+            {
+                return;
+            }
+            var method = type.GetMethod("AppendPrivatePaths");
+            if (method == null)
+            {
+                return;
+            }
+            method.Invoke(instance, null);
+        }
 
         public DirectoryInfo[] PrivatePaths { get; private set; }
 
@@ -65,26 +90,42 @@ namespace XNetCore.STL
         private object getRunnerInstance()
         {
             var type = "XNetCore.Runner.PrivatePathHelper,XNetCore.Runner".ToType();
+            if (type == null)
+            {
+                return null;
+            }
             var p = type.Property("Instance");
+            if (p == null)
+            {
+                return null;
+            }
             var instance = p.GetValue(null);
+            if (instance == null)
+            {
+                return null;
+            }
             return instance;
         }
 
         private T getProperty<T>(string pname)
         {
             var instance = getRunnerInstance();
+            if (instance == null)
+            {
+                return default(T);
+            }
             var type = instance.GetType();
             var p = type.Property(pname);
             var result = p.GetValue(instance);
             return (T)result;
-        }  
+        }
 
-        private ConcurrentDictionary<FileInfo, Type[]> fileInfoTypes = new ConcurrentDictionary<FileInfo, Type[]>(); 
+        private ConcurrentDictionary<FileInfo, Type[]> fileInfoTypes = new ConcurrentDictionary<FileInfo, Type[]>();
         public Type[] GetFileTypes(FileInfo fi)
         {
             if (this.fileInfoTypes.ContainsKey(fi))
             {
-                this.fileInfoTypes.TryGetValue(fi, out Type[]  value);
+                this.fileInfoTypes.TryGetValue(fi, out Type[] value);
                 return value;
             }
             var result = mGetFileTypes(fi);
@@ -101,7 +142,7 @@ namespace XNetCore.STL
                 foreach (var t in ts)
                 {
                     var type = t.AssemblyQualifiedName.ToType();
-                    if (type!=null)
+                    if (type != null)
                     {
                         result.Add(type);
                     }

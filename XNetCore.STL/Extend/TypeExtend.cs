@@ -117,12 +117,82 @@ namespace XNetCore.STL
             }
             return false;
         }
+        public static bool IsSqlSimpleType(this Type type)
+        {
+            var t = type;
+            if (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(Nullable<>))
+                t = Nullable.GetUnderlyingType(type);
 
+            return t.IsPrimitive || t.Equals(typeof(string)) ||
+                   t.Equals(typeof(DateTime)) || t.Equals(typeof(DateTimeOffset)) || t.Equals(typeof(TimeSpan)) ||
+                   t.Equals(typeof(Guid)) ||
+                   t.Equals(typeof(byte[])) || t.Equals(typeof(char[]));
+        }
+        public static bool IsTupleType(this Type type, bool checkBaseTypes = false)
+        {
+            if (type == null)
+                throw new ArgumentNullException(nameof(type));
 
-        public static PropertyInfo Property(this Type type,string pName)
+            if (type == typeof(Tuple))
+                return true;
+            if (type == typeof(ValueTuple))
+                return true;
+
+            while (type != null)
+            {
+                if (type.IsGenericType)
+                {
+                    var genType = type.GetGenericTypeDefinition();
+                    if (genType == typeof(Tuple<>)
+                        || genType == typeof(Tuple<,>)
+                        || genType == typeof(Tuple<,,>)
+                        || genType == typeof(Tuple<,,,>)
+                        || genType == typeof(Tuple<,,,,>)
+                        || genType == typeof(Tuple<,,,,,>)
+                        || genType == typeof(Tuple<,,,,,,>)
+                        || genType == typeof(Tuple<,,,,,,,>)
+                        || genType == typeof(Tuple<,,,,,,,>))
+                        return true;
+                    if (genType == typeof(ValueTuple<>)
+                      || genType == typeof(ValueTuple<,>)
+                      || genType == typeof(ValueTuple<,,>)
+                      || genType == typeof(ValueTuple<,,,>)
+                      || genType == typeof(ValueTuple<,,,,>)
+                      || genType == typeof(ValueTuple<,,,,,>)
+                      || genType == typeof(ValueTuple<,,,,,,>)
+                      || genType == typeof(ValueTuple<,,,,,,,>)
+                      || genType == typeof(ValueTuple<,,,,,,,>))
+                        return true;
+                }
+
+                if (!checkBaseTypes)
+                    break;
+
+                type = type.BaseType;
+            }
+
+            return false;
+        }
+        public static PropertyInfo Property(this Type type, string pName)
         {
             var result = type.GetProperty(pName, BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Static | BindingFlags.Instance | BindingFlags.DeclaredOnly);
             return result;
+        }
+
+        public static bool IsGenericSubclassOf(this Type type, Type superType)
+        {
+            if (type.BaseType != null
+                && !type.BaseType.Equals(typeof(object))
+                && type.BaseType.IsGenericType)
+            {
+                if (type.BaseType.GetGenericTypeDefinition().Equals(superType))
+                {
+                    return true;
+                }
+                return type.BaseType.IsGenericSubclassOf(superType);
+            }
+
+            return false;
         }
     }
 }

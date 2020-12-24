@@ -65,7 +65,7 @@ namespace XNetCore.CEF.Runner
             }
             if (this.InvokeRequired)
             {
-                this.Invoke(new Action<object, EventArgs>(onTextChanged), sender, e);
+                this.BeginInvoke(new Action<object, EventArgs>(onTextChanged), sender, e);
                 return;
             }
             var c = sender as Control;
@@ -81,7 +81,7 @@ namespace XNetCore.CEF.Runner
         {
             if (this.InvokeRequired)
             {
-                this.Invoke(new Action<string>(setAddress), address);
+                this.BeginInvoke(new Action<string>(setAddress), address);
                 return;
             }
         }

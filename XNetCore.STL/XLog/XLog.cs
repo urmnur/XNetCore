@@ -37,6 +37,7 @@ namespace XNetCore.STL
             this.LogTime = DateTime.Now;
             this.Level = LogLevel.Trace;
         }
+        public int StackFrameIndex { get; set; }        
         public DateTime LogTime { get; private set; }
         public LogLevel Level { get; set; }
         public string Method { get; set; }

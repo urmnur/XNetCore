@@ -12,26 +12,19 @@ namespace XNetCore.CEF.Runner
     {
         public void ShowDevTools()
         {
-            try
+            var mainbrowser = WebBrowserHelper.Instance.WebBrowser;
+            if (mainbrowser == null)
             {
-                var mainbrowser = WebBrowserHelper.Instance.WebBrowser;
-                if (mainbrowser == null)
-                {
-                    return;
-                }
-                mainbrowser.ShowDevTools();
+                return;
             }
-            catch(Exception ex)
-            {
-
-            }
+            mainbrowser.ShowDevTools();
         }
         public void Close()
         {
             var frm = MainFrm.CefMainFrm;
             if (frm.InvokeRequired)
             {
-                frm.Invoke(new Action(Close));
+                frm.BeginInvoke(new Action(Close));
                 return;
             }
             ClientHelper.Instance.ApplicationExit = true;
@@ -53,7 +46,7 @@ namespace XNetCore.CEF.Runner
             var frm = MainFrm.CefMainFrm;
             if (frm.InvokeRequired)
             {
-                frm.Invoke(new Action(FullScreen));
+                frm.BeginInvoke(new Action(FullScreen));
                 return;
             }
             frm.TopMost = false;
@@ -74,19 +67,6 @@ namespace XNetCore.CEF.Runner
             else
             {
                 frm.FormBorderStyle = (FormBorderStyle)mainFormBorderStyle;
-            }
-        }
-        public void ShowForm(string typeName)
-        {
-            var frm = MainFrm.CefMainFrm;
-            if (frm.InvokeRequired)
-            {
-                frm.Invoke(new Action<string>(ShowForm), typeName);
-                return;
-            }
-            if (!frm.Visible)
-            {
-                frm.Show();
             }
         }
     }

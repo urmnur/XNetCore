@@ -48,7 +48,7 @@ namespace XNetCore.STL
         public SystemAbout mGetSystemAbout()
         {
             var versions = new List<FileVersion>();
-            var fs = RunnerHelper.Instance.PrivateFiles;
+            var fs = Runner.Instance.PrivateFiles;
             var dir = LocalPath.ProcessFile;
             var maxTime = DateTime.MinValue;
             for (var i = 0; i < fs.Length; i++)

@@ -132,18 +132,18 @@ namespace XNetCore.CEF.Runner
         }
 
 
-        private int setParentFormText(Form d, string text)
+        private int setParentFormText(Form frm, string text)
         {
-            if (d == null)
+            if (frm == null)
             {
                 return 0;
             }
-            if (d.InvokeRequired)
+            if (frm.InvokeRequired)
             {
-                d.Invoke(new Action<string>(t => { d.Text = t; }), text);
+                frm.BeginInvoke(new Action<string>(t => { frm.Text = t; }), text);
                 return 1;
             }
-            d.Text = text;
+            frm.Text = text;
             return 1;
         }
 

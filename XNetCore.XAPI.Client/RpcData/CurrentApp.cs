@@ -74,7 +74,7 @@ namespace XNetCore.XAPI.Client
             {
                 try
                 {
-                    var ts = RunnerHelper.Instance.GetFileTypes(fi);
+                    var ts = Runner.Instance.GetFileTypes(fi);
                     foreach (var t in ts)
                     {
                         if (!t.IsClass)
@@ -101,7 +101,7 @@ namespace XNetCore.XAPI.Client
             var thisfilename = thisFile.Name.ToLower();
             var startName = thisfilename.Substring(0, thisfilename.LastIndexOf("."));
             var endName = thisfilename.Substring(thisfilename.LastIndexOf("."));
-            foreach (var fi in RunnerHelper.Instance.PrivateFiles)
+            foreach (var fi in Runner.Instance.PrivateFiles)
             {
                 var fileName = fi.Name.ToLower();
                 if (fileName.StartsWith(startName)
